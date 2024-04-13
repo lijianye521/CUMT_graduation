@@ -7,39 +7,35 @@
     @select="handleSelect"
   >
     <el-menu-item index="0">
-      <img
-        style="width: 200px"
-        src="/images/mylogo.svg"
-        alt="Element logo"
-      /> 
+      <img style="width: 200px" src="/images/mylogo.svg" alt="Element logo" />
     </el-menu-item>
     <div class="flex-grow" />
-    <el-menu-item index="1">主页</el-menu-item>
+    <el-menu-item index="1">主页(未开发)</el-menu-item>
     <el-sub-menu index="2">
-      <template #title>提供服务</template>
+      <template #title>提供服务(未开发)</template>
       <el-menu-item index="2-1">模型训练</el-menu-item>
       <el-menu-item index="2-2">item two</el-menu-item>
       <el-menu-item index="2-3">item three</el-menu-item>
       <el-sub-menu index="2-4">
-        <template #title>模型情况对比</template>
-        <el-menu-item index="2-4-1">精确度对比</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
+        <template #title>训练历史记录（未开发完全）</template>
+        <el-menu-item index="2-4-1">训练时间统计（未开发）</el-menu-item>
+        <el-menu-item index="2-4-2">训练精准度统计（未开发）</el-menu-item>
+        <el-menu-item index="2-4-3">训练历史记录(未开发)</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
-    <el-menu-item index="3">关于本站</el-menu-item>
-    
-  <div class="switch-container">
-  <el-switch
-    v-model="isDark"
-    size="large"
-    :active-value="Drak"
-    :inactive-value="Light"    
-    :active-action-icon="Sunny"
-    :inactive-action-icon="Moon"
-  />
-  </div>
+    <el-menu-item index="3">关于本站（未开发）</el-menu-item>
+    <el-menu-item index="3">登录（未开发）</el-menu-item>
 
+    <div class="switch-container">
+      <el-switch
+        v-model="isDark"
+        size="large"
+        :active-value="Drak"
+        :inactive-value="Light"
+        :active-action-icon="Sunny"
+        :inactive-action-icon="Moon"
+      />
+    </div>
   </el-menu>
 </template>
 
@@ -57,11 +53,11 @@ const router = useRouter() // 使用useRouter
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
-  if (key === '1') { // 检查是否点击的是“主页”菜单项
+  if (key === '1') {
+    // 检查是否点击的是“主页”菜单项
     router.push('/') // 跳转到/about路由
   }
 }
-
 </script>
 
 <style>
