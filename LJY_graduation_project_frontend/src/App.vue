@@ -2,14 +2,15 @@
 // import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 </script>
-
 <template>
   <div class="app-container">
     <header>
       <Header />
     </header>
 
-    <RouterView class="main-content" />
+    <div class="main-content">
+      <RouterView />
+    </div>
   </div>
 </template>
 

@@ -11,9 +11,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^10.9.0",
+    "axios": "^1.6.8",
+    "echarts": "^5.5.0",
     "element-plus": "^2.6.3",
     "vue": "^3.4.21",
+    "vue-countup-v2": "^4.0.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
