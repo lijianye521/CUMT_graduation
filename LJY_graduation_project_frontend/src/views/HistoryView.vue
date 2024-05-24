@@ -51,7 +51,6 @@ import { onMounted, ref } from 'vue'
 import { fetchAndStoreData, sharedData } from '@/api/training_info' // 确保路径正确
 
 const totalDuration = ref(0)
-console.log(sharedData)
 
 const formatDate = (dateString) => {
   const date = new Date(dateString)

@@ -10,10 +10,11 @@
       <img style="width: 200px" src="/images/mylogo.svg" alt="Element logo" />
     </el-menu-item>
     <div class="flex-grow" />
-    <el-menu-item index="1">主页(未开发)</el-menu-item>
+    <el-menu-item index="1">主页</el-menu-item>
     <el-sub-menu index="2">
-      <template #title>提供服务(未开发)</template>
+      <template #title>提供服务</template>
       <el-menu-item index="2-1">模型训练</el-menu-item>
+      <el-menu-item index="2-2">缺陷分派</el-menu-item>
       <el-sub-menu index="2-4">
         <template #title>训练历史记录</template>
         <el-menu-item index="2-4-1">训练时间统计</el-menu-item>
@@ -21,7 +22,7 @@
         <el-menu-item index="2-4-3">训练历史记录</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
-    <el-menu-item index="3">关于本站（未开发）</el-menu-item>
+    <el-menu-item index="3">关于本站</el-menu-item>
     <el-menu-item index="4" v-if="loginStatus === 0">
       <el-button text @click="dialog = true">登录 </el-button>
     </el-menu-item>
@@ -33,7 +34,7 @@
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
           /></div
       ></template>
-      <el-menu-item index="5-1">个人信息</el-menu-item>
+      <!-- <el-menu-item index="5-1">个人信息</el-menu-item> -->
       <el-menu-item index="5-2">退出登录</el-menu-item>
     </el-sub-menu>
 
@@ -184,6 +185,9 @@ const handleSelect = (key, keyPath) => {
   }
   if (key === '2-1') {
     router.push('/train') // 跳转到主页路由
+  }
+  if (key === '2-2') {
+    router.push('/predict') // 跳转到主页路由
   }
   if (key === '2-4-2') {
     router.push('/diagram') // 跳转到历史记录路由

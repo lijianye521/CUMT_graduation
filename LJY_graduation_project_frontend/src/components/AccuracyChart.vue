@@ -122,7 +122,7 @@ watch(
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 800px;
   height: 500px;
 }
 .selector-container {
