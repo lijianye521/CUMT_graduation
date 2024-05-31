@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
+  <div class="main">
     <div
       class="container-fluid d-flex flex-column justify-content-center align-items-center"
       style="min-height: 100vh"
@@ -49,7 +49,7 @@ onMounted(() => {
         <!-- 添加更多技术卡片 -->
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <style>
@@ -79,7 +79,7 @@ onMounted(() => {
 }
 
 /* 添加以下样式以设置背景图片 */
-main {
+.main {
   background-image: url('/background.jpg'); /* 假设background.png在public目录根位置 */
   background-size: cover; /* 背景图片覆盖整个元素 */
   background-position: center; /* 背景图片居中显示 */

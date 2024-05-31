@@ -7,6 +7,10 @@ from django.core.files.base import ContentFile
 from django.conf import settings
 from django.http import HttpResponse
 from rest_framework import status
+from rest_framework.views import APIView
+import subprocess
+from django.http import StreamingHttpResponse
+
 import torch
 from transformers import XLNetTokenizer, XLNetForSequenceClassification
 import numpy as np
@@ -38,8 +42,7 @@ def predict(request):
     print("Received data from frontend:", data)
     
     # 合并 summary 和 description
-    combined_text = f"{data.get('summary', '')}, {data.get('description', '')}"
-    
+    combined_text = f"{data.get('summary', '')} {data.get('description', '')} {data.get('component', '')} {data.get('severity', '')} {data.get('priority', '')}"    
     print("Combined Text:", combined_text)
     
     # 定义模型和tokenizer的路径
@@ -106,5 +109,74 @@ def predict(request):
 def hello_world_view(request):
     return HttpResponse('Hello World')
 
+import os
 
+# 在 TrainBERTView 类的 post 方法中，使用 StreamingHttpResponse 返回命令行输出，以便前端能够捕获信息
 
+class TrainBERTView(APIView):
+    def post(self, request, *args, **kwargs):
+        dataset = request.data.get('dataset')
+        model = request.data.get('model')
+        checkpoint_path = request.data.get('checkpointPath')
+        experiment_num = request.data.get('experimentNum')
+        optional_feature = request.data.get('optionalFeature')
+
+        print("接收到的参数:")
+        print("数据集:", dataset)
+        # print("模型:", model)
+        print("检查点路径:", checkpoint_path)
+        print("实验编号:", experiment_num)
+        print("可选特性:", optional_feature)
+
+        dataset_path = os.path.join(settings.BASE_DIR, 'dataset', dataset)
+        model_path = os.path.join(settings.BASE_DIR, 'model', model)
+
+        command = (
+            f"python bert.py --dataset {dataset_path} --model {model_path} "
+            f"--checkpoint_path {checkpoint_path} "
+            f"--experiment_num {experiment_num} "
+            f"--optional_feature {optional_feature}"
+        )
+
+        # 创建一个生成器，用于执行命令并逐行捕获输出
+        def generate():
+            process = os.popen(command)
+            for line in process:
+                yield f"data: {line}\n\n"
+        # 创建并返回一个 StreamingHttpResponse 对象，使用生成器作为内容
+        response = StreamingHttpResponse(generate(), content_type="text/event-stream")
+        response['Cache-Control'] = 'no-cache'
+        return response
+# class TrainBERTView(APIView):
+#     def post(self, request, *args, **kwargs):
+#         # 提取发送的数据
+#         dataset = request.data.get('dataset')
+#         model = request.data.get('model')
+#         checkpoint_path = request.data.get('checkpointPath')
+#         experiment_num = request.data.get('experimentNum')
+#         optional_feature = request.data.get('optionalFeature')
+#         # 打印接收到的参数
+#         print("接收到的参数:")
+#         print("数据集:", dataset)
+#         print("模型:", model)
+#         print("检查点路径:", checkpoint_path)
+#         print("实验编号:", experiment_num)
+#         print("可选特性:", optional_feature)
+
+#         # 组装命令
+#         command = (
+#             f"python bert.py --dataset {'./dataset/'+dataset} --model {model} "
+#             f"--checkpoint_path {checkpoint_path} "
+#             f"--experiment_num {experiment_num}"
+#             f"--optional_feature {optional_feature}"
+#         )
+#         print("执行的命令:", command)
+#         # 创建一个生成器，用于执行命令并逐行捕获输出
+#         def generate():
+#             with subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True) as process:
+#                 for line in process.stdout:
+#                     yield f"data: {line}\n\n"
+#         # 创建并返回一个 StreamingHttpResponse 对象，使用生成器作为内容
+#         response = StreamingHttpResponse(generate(), content_type="text/event-stream")
+#         response['Cache-Control'] = 'no-cache'
+#         return response

@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.views import TokenVerifyView
-from .views import protected_view ,list_datasets,hello_world_view,predict,list_models# 确保从你的views模块正确导入视图函数
+from .views import protected_view ,list_datasets,hello_world_view,predict,list_models,TrainBERTView
+# 确保从你的views模块正确导入视图函数
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -32,6 +33,8 @@ urlpatterns = [
     path('api/models/', list_models, name='list-models'),
     path('hello/', hello_world_view,name="hello"),  # 添加这行
     path('api/predict/', predict, name='predict'),
+    path('api/trainbert', TrainBERTView.as_view(), name='train-bert'),
+    
 
 
 

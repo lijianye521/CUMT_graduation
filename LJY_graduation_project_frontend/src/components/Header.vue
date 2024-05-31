@@ -186,6 +186,9 @@ const handleSelect = (key, keyPath) => {
   if (key === '2-1') {
     router.push('/train') // 跳转到主页路由
   }
+  if (key === '3') {
+    router.push('/about') // 跳转到主页路由
+  }
   if (key === '2-2') {
     router.push('/predict') // 跳转到主页路由
   }

@@ -35,41 +35,25 @@
       <el-row :gutter="20">
         <el-col :span="6">
           <el-form-item label="产品">
-            <el-select v-model="form.product" placeholder="请选择产品">
-              <el-option label="产品1" value="product1"></el-option>
-              <el-option label="产品2" value="product2"></el-option>
-              <el-option label="产品3" value="product3"></el-option>
-            </el-select>
+            <el-input v-model="form.product" placeholder="请输入产品"></el-input>
           </el-form-item>
         </el-col>
 
         <el-col :span="6">
           <el-form-item label="组件">
-            <el-select v-model="form.component" placeholder="请选择组件">
-              <el-option label="组件1" value="component1"></el-option>
-              <el-option label="组件2" value="component2"></el-option>
-              <el-option label="组件3" value="component3"></el-option>
-            </el-select>
+            <el-input v-model="form.component" placeholder="请输入组件"></el-input>
           </el-form-item>
         </el-col>
 
         <el-col :span="6">
           <el-form-item label="严重性">
-            <el-select v-model="form.severity" placeholder="请选择严重性">
-              <el-option label="高" value="high"></el-option>
-              <el-option label="中" value="medium"></el-option>
-              <el-option label="低" value="low"></el-option>
-            </el-select>
+            <el-input v-model="form.severity" placeholder="请输入严重性"></el-input>
           </el-form-item>
         </el-col>
 
         <el-col :span="6">
           <el-form-item label="优先级">
-            <el-select v-model="form.priority" placeholder="请选择优先级">
-              <el-option label="高" value="high"></el-option>
-              <el-option label="中" value="medium"></el-option>
-              <el-option label="低" value="low"></el-option>
-            </el-select>
+            <el-input v-model="form.priority" placeholder="请输入优先级"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
